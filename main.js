@@ -22,6 +22,7 @@ app.get('/hello', function(req, res){
 		res.end(JSON.stringify(res2));
 		return;
 	})
+});
 
 app.post('/hello', function(req, res){
 	var name = req.body.name;
