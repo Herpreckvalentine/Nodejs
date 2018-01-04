@@ -30,7 +30,7 @@ app.post('/hello', function(req, res){
 		if (err){
 			console.log(err)
 		} else {
-			console.log('added user" + name);
+			console.log('added user' + name);
 		}
 	})	
 
