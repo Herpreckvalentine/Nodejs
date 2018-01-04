@@ -12,10 +12,28 @@ var mongo = require('./mongo.js');
 
 // recupération de la var environnement Clever 
 var uri = process.env.MONGODB_ADDON_URI;
+var dbName = process.env.MONGODB_ADDON_DB;
+
 var http = require('http').Server(app);
 
 app.get('/hello', function(req, res){
-	res.end('Salut tout le monde');
+	var coll = mongo.collection('users');
+	coll.find().toArray(function(err, res2){
+		res.end(JSON.stringify(res2));
+		return;
+	})
+
+app.post('/hello', function(req, res){
+	var name = req.body.name;
+	var coll = mongo.collection('users');
+	coll.insert({name:name}, function(err, res){
+		if (err){
+			console.log(err)
+		} else {
+			console.log('added user" + name);
+		}
+	})	
+
 });
 
 mongo.connect(uri, function(){
