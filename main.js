@@ -16,11 +16,11 @@ var http = require('http').Server(app);
 
 app.get('/hello', function(req, res){
 	res.end('Salut tout le monde');
-})
-
-mongo.connect(uri, function()}
-conso.log("MongoDB connected");
-http.listen(8080, () =>{
-	console.log("server started");
 });
-})
+
+mongo.connect(uri, function(){
+	console.log("MongoDB connected");
+	http.listen(8080, () =>{
+		console.log("server started");
+	});
+});
