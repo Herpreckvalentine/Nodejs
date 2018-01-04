@@ -4,10 +4,10 @@ var connected = false;
 
 module.exports = {
   connect: function(url, callback){
-    MongoClient.connect(url, function(err, _db){
+    MongoClient.connect(url, function(err, client){
       if (err) { throw new Error('Could not connect: '+err); }
       
-      db = _db;
+      db = client.db(dbName);;
       connected = true;
       
       callback(db);
@@ -18,6 +18,7 @@ module.exports = {
       throw new Error('Must connect to Mongo before calling "collection"');
     }
     
-    return db.collection(name);
+    const d = db.collection(name);
+    return d;
   }
 };
